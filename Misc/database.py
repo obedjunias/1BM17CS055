@@ -19,7 +19,7 @@ def insert(emp):
 
 
 def get_employee(lastname):
-    c.execute("SELECT * FROM employees WHERE last=:last", {'last': lastname})
+    c.execute("SELECT * FROM employees")
     return c.fetchall()
 
 
@@ -38,9 +38,13 @@ def remove_employee(emp):
 emp_1 = Employee('Obed', 'Junias', 120000)
 emp_2 = Employee('Abc', 'Def', 60000)
 
-insert(emp_1)
-insert(emp_2)
 
+
+t1 = (12,'a','b',15)
+t2 = (16,'c','d',56)
+
+
+c.executemany("INSERT INTO employees VALUES (?,?,?,?)",(t1,t2))
 employees = get_employee('Junias')
 print(employees)
 
